@@ -1096,46 +1096,6 @@
         </div>
       </div>
 
-      <!-- プラン比較表 -->
-      <div class="pricing-comparison fade-in">
-        <h4>プラン比較 ― ここが違います</h4>
-        <table class="comparison-table">
-          <thead>
-            <tr>
-              <th></th>
-              <th>梅プラン</th>
-              <th>竹プラン</th>
-              <th>松プラン</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td style="font-weight:600;text-align:left;">初期費用</td>
-              <td class="highlight-cell">0円</td>
-              <td>10,000円</td>
-              <td>20,000円</td>
-            </tr>
-            <tr>
-              <td style="font-weight:600;text-align:left;">月額</td>
-              <td>4,980円</td>
-              <td>4,980円</td>
-              <td>7,980円</td>
-            </tr>
-            <tr>
-              <td style="font-weight:600;text-align:left;">カスタマイズページ</td>
-              <td style="color:#ccc;">&mdash;</td>
-              <td class="highlight-cell">あり</td>
-              <td class="highlight-cell">あり</td>
-            </tr>
-            <tr>
-              <td style="font-weight:600;text-align:left;">マーケティング対応</td>
-              <td style="color:#ccc;">&mdash;</td>
-              <td style="color:#ccc;">&mdash;</td>
-              <td class="highlight-cell">あり</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
 
       <!-- 既存クリニック向け -->
       <div class="pricing-existing fade-in">
@@ -1169,62 +1129,135 @@
         <p class="pricing-existing-note">※ プラン内容は新規開業向けと同様です。移行作業の内容により費用が変動します。</p>
       </div>
 
-      <!-- サービス詳細 -->
+      <!-- サービス詳細&プランの違い -->
       <div style="margin-top: 48px;" class="fade-in">
-        <h3 class="section-title text-center" style="font-size:1.2rem;">サービス内容の詳細</h3>
-        <div class="details-grid">
-          <div class="detail-card">
-            <h4>
-              <svg viewBox="0 0 24 24" fill="none" stroke="#0d7377" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-              HP制作（テンプレート作成）
-            </h4>
-            <ul>
-              <li>HP表示文言作成</li>
-              <li>クリニック専用テンプレートによる制作</li>
-              <li>テンプレート+カスタマイズ対応（竹・松）</li>
-            </ul>
-          </div>
-          <div class="detail-card">
-            <h4>
-              <svg viewBox="0 0 24 24" fill="none" stroke="#0d7377" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
-              CMSサービス
-            </h4>
-            <p style="font-size:0.8rem;color:#888;margin-bottom:10px;line-height:1.6;">※ CMSとは、専門知識がなくてもHP上のお知らせやブログを簡単に更新できる管理画面のことです。</p>
-            <ul>
-              <li>お知らせページ</li>
-              <li>ブログ機能</li>
-              <li>FAQページ</li>
-            </ul>
-          </div>
-          <div class="detail-card">
-            <h4>
-              <svg viewBox="0 0 24 24" fill="none" stroke="#0d7377" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-              マーケティング対応（松プラン）
-            </h4>
-            <ul>
-              <li>Google Analytics 設定</li>
-              <li>サーチコンソール設定</li>
-              <li>管理画面の構築</li>
-              <li>マーケティングレポート送付</li>
-              <li>MEO初期設定</li>
-              <li>口コミ戦略</li>
-              <li>SEO対策</li>
-            </ul>
-          </div>
-          <div class="detail-card">
-            <h4>
-              <svg viewBox="0 0 24 24" fill="none" stroke="#0d7377" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-              毎月の運用保守（以下すべて月額に含まれております）
-            </h4>
-            <ul>
-              <li>HPの障害対応</li>
-              <li>サーバー費用</li>
-              <li>ドメイン費用</li>
-              <li>CMS管理画面の使用料</li>
-              <li>お困り時の問い合わせ対応</li>
-              <li>マーケティングレポート（松プラン）</li>
-            </ul>
-          </div>
+        <h3 class="section-title text-center" style="font-size:1.2rem;">サービス内容の詳細&プランの違い</h3>
+        <p style="font-size:0.8rem;color:#888;text-align:center;margin-bottom:24px;">※ CMSとは、専門知識がなくてもHP上のお知らせやブログを簡単に更新できる管理画面のことです。</p>
+        <div class="pricing-comparison">
+          <table class="comparison-table" style="font-size:0.82rem;">
+            <thead>
+              <tr>
+                <th style="text-align:left;min-width:180px;">サービス内容</th>
+                <th>梅プラン</th>
+                <th>竹プラン</th>
+                <th>松プラン</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td colspan="4" style="background:#0d7377;color:#fff;font-weight:700;text-align:left;padding:10px 12px;">HP制作</td></tr>
+              <tr>
+                <td style="text-align:left;">クリニック専用テンプレートによる制作</td>
+                <td class="highlight-cell">&#10003;</td>
+                <td class="highlight-cell">&#10003;</td>
+                <td class="highlight-cell">&#10003;</td>
+              </tr>
+              <tr>
+                <td style="text-align:left;">HP表示文言作成</td>
+                <td class="highlight-cell">&#10003;</td>
+                <td class="highlight-cell">&#10003;</td>
+                <td class="highlight-cell">&#10003;</td>
+              </tr>
+              <tr>
+                <td style="text-align:left;">テンプレート+カスタマイズ対応</td>
+                <td style="color:#ccc;">&mdash;</td>
+                <td class="highlight-cell">&#10003;</td>
+                <td class="highlight-cell">&#10003;</td>
+              </tr>
+              <tr><td colspan="4" style="background:#0d7377;color:#fff;font-weight:700;text-align:left;padding:10px 12px;">CMSサービス（管理画面）</td></tr>
+              <tr>
+                <td style="text-align:left;">お知らせページ</td>
+                <td class="highlight-cell">&#10003;</td>
+                <td class="highlight-cell">&#10003;</td>
+                <td class="highlight-cell">&#10003;</td>
+              </tr>
+              <tr>
+                <td style="text-align:left;">ブログ機能</td>
+                <td class="highlight-cell">&#10003;</td>
+                <td class="highlight-cell">&#10003;</td>
+                <td class="highlight-cell">&#10003;</td>
+              </tr>
+              <tr>
+                <td style="text-align:left;">FAQページ</td>
+                <td class="highlight-cell">&#10003;</td>
+                <td class="highlight-cell">&#10003;</td>
+                <td class="highlight-cell">&#10003;</td>
+              </tr>
+              <tr><td colspan="4" style="background:#0d7377;color:#fff;font-weight:700;text-align:left;padding:10px 12px;">マーケティング対応</td></tr>
+              <tr>
+                <td style="text-align:left;">MEO初期設定</td>
+                <td style="color:#ccc;">&mdash;</td>
+                <td style="color:#ccc;">&mdash;</td>
+                <td class="highlight-cell">&#10003;</td>
+              </tr>
+              <tr>
+                <td style="text-align:left;">SEO対策</td>
+                <td style="color:#ccc;">&mdash;</td>
+                <td style="color:#ccc;">&mdash;</td>
+                <td class="highlight-cell">&#10003;</td>
+              </tr>
+              <tr>
+                <td style="text-align:left;">口コミ戦略</td>
+                <td style="color:#ccc;">&mdash;</td>
+                <td style="color:#ccc;">&mdash;</td>
+                <td class="highlight-cell">&#10003;</td>
+              </tr>
+              <tr>
+                <td style="text-align:left;">Google Analytics 設定</td>
+                <td style="color:#ccc;">&mdash;</td>
+                <td style="color:#ccc;">&mdash;</td>
+                <td class="highlight-cell">&#10003;</td>
+              </tr>
+              <tr>
+                <td style="text-align:left;">サーチコンソール設定</td>
+                <td style="color:#ccc;">&mdash;</td>
+                <td style="color:#ccc;">&mdash;</td>
+                <td class="highlight-cell">&#10003;</td>
+              </tr>
+              <tr>
+                <td style="text-align:left;">管理画面の構築</td>
+                <td style="color:#ccc;">&mdash;</td>
+                <td style="color:#ccc;">&mdash;</td>
+                <td class="highlight-cell">&#10003;</td>
+              </tr>
+              <tr>
+                <td style="text-align:left;">マーケティングレポート送付</td>
+                <td style="color:#ccc;">&mdash;</td>
+                <td style="color:#ccc;">&mdash;</td>
+                <td class="highlight-cell">&#10003;</td>
+              </tr>
+              <tr><td colspan="4" style="background:#0d7377;color:#fff;font-weight:700;text-align:left;padding:10px 12px;">毎月の運用保守（すべて月額に含まれております）</td></tr>
+              <tr>
+                <td style="text-align:left;">HPの障害対応</td>
+                <td class="highlight-cell">&#10003;</td>
+                <td class="highlight-cell">&#10003;</td>
+                <td class="highlight-cell">&#10003;</td>
+              </tr>
+              <tr>
+                <td style="text-align:left;">サーバー費用</td>
+                <td class="highlight-cell">&#10003;</td>
+                <td class="highlight-cell">&#10003;</td>
+                <td class="highlight-cell">&#10003;</td>
+              </tr>
+              <tr>
+                <td style="text-align:left;">ドメイン費用</td>
+                <td class="highlight-cell">&#10003;</td>
+                <td class="highlight-cell">&#10003;</td>
+                <td class="highlight-cell">&#10003;</td>
+              </tr>
+              <tr>
+                <td style="text-align:left;">CMS管理画面の使用料</td>
+                <td class="highlight-cell">&#10003;</td>
+                <td class="highlight-cell">&#10003;</td>
+                <td class="highlight-cell">&#10003;</td>
+              </tr>
+              <tr>
+                <td style="text-align:left;">お困り時の問い合わせ対応</td>
+                <td class="highlight-cell">&#10003;</td>
+                <td class="highlight-cell">&#10003;</td>
+                <td class="highlight-cell">&#10003;</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
 
