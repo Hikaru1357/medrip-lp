@@ -1,0 +1,8 @@
+{
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/done", "destination": "/index_done.html" },
+    { "source": "/cost", "destination": "/index_cost.html" },
+    { "source": "/patient", "destination": "/index_patient.html" }
+  ]
+}
