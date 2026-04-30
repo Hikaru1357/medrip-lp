@@ -14,8 +14,17 @@
   <meta name="description" content="医科・歯科・動物病院限定のHP制作サービス。月額4,980円〜。制作・運用・集患までお任せください。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Noto+Sans+JP:wght@300;400;500;600;700;800&family=Noto+Serif+JP:wght@400;500;600;700&family=Shippori+Mincho:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
   <style>
+    :root {
+      --font-serif: 'Shippori Mincho', 'Noto Serif JP', serif;
+      --font-sans: 'Noto Sans JP', sans-serif;
+      --font-en: 'Cinzel', serif;
+      --font-en-body: 'Cormorant Garamond', serif;
+      --gold: #B8962E;
+      --gold-light: #D4B85A;
+    }
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; font-size: 16px; }
     body {
@@ -30,6 +39,7 @@
     ul { list-style: none; }
 
     .container { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+    .container.container-wide { max-width: 1500px; }
     .section { padding: 80px 0; }
     .section-label {
       display: inline-flex;
@@ -105,7 +115,7 @@
     .hero-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(100deg, rgba(255,255,255,0.97) 0%, rgba(255,255,255,0.88) 40%, rgba(255,255,255,0.15) 70%, transparent 100%);
+      background: linear-gradient(100deg, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.55) 35%, rgba(255,255,255,0.1) 65%, transparent 100%);
       z-index: 1;
     }
     .hero-mobile-img {
@@ -136,6 +146,11 @@
       color: #1a2e2e;
       margin-bottom: 20px;
       letter-spacing: 0.02em;
+      text-shadow:
+        0 0 18px rgba(255,255,255,0.95),
+        0 0 36px rgba(255,255,255,0.85),
+        0 0 60px rgba(255,255,255,0.7),
+        0 2px 4px rgba(255,255,255,0.9);
     }
     .hero-title em {
       font-style: normal;
@@ -156,6 +171,10 @@
       color: #444;
       margin-bottom: 28px;
       line-height: 1.8;
+      text-shadow:
+        0 0 14px rgba(255,255,255,0.95),
+        0 0 28px rgba(255,255,255,0.8),
+        0 1px 3px rgba(255,255,255,0.9);
     }
     .hero-limited {
       display: inline-flex;
@@ -742,29 +761,96 @@
 
     @media (max-width: 768px) {
       .header { height: 64px; }
-      .header .container { height: 64px; }
-      .header-logo { font-size: 0.95rem; }
-      .header-subtitle { font-size: 0.6rem; }
-      .hero { min-height: auto; display: block; }
-      .hero-bg { display: none; }
-      .hero-overlay { display: none; }
-      .hero-mobile-img {
-        display: block;
-        background: linear-gradient(135deg, #f0f8f8, #e0eded);
-        padding-top: 64px;
+      .header .container { height: 64px; padding: 0 14px; }
+      .header-logo { font-size: 0.85rem; }
+      .header-subtitle { font-size: 0.55rem; }
+      .header-cta {
+        font-size: 0.62rem;
+        padding: 5px 10px;
+        gap: 4px;
+        white-space: nowrap;
+        letter-spacing: 0;
       }
-      .hero-mobile-img img {
+      .header-cta .line-icon { width: 13px; height: 13px; border-radius: 3px; }
+      .hero {
+        min-height: auto;
+        display: block;
+        position: relative;
+        margin-top: 64px;
+        overflow: visible;
+      }
+      .hero-bg {
+        display: block;
+        position: relative;
         width: 100%;
-        height: auto;
-        display: block;
+        height: 115vw;
+        min-height: 380px;
+        max-height: 640px;
       }
-      .hero-content { position: static; padding: 28px 0 32px; max-width: 100%; text-align: center; }
-      .hero-content .cta-buttons { justify-content: center; }
-      .hero-content .hero-tags { justify-content: center; }
-      .hero-title { font-size: 2rem; }
-      .hero-sub { font-size: 1rem; }
-      .hero-limited { font-size: 1rem; padding: 12px 24px; }
-      .hero-specialty { font-size: 0.95rem; padding: 10px 24px; margin-bottom: 16px; }
+      .hero-bg img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .hero-overlay {
+        display: block;
+        position: absolute;
+        top: 0; left: 0; right: 0;
+        height: 115vw;
+        min-height: 380px;
+        max-height: 640px;
+        background: linear-gradient(to right, rgba(255,255,255,0.88) 0%, rgba(255,255,255,0.55) 50%, rgba(255,255,255,0.08) 100%);
+        z-index: 1;
+      }
+      .hero-mobile-img { display: none; }
+      .hero-content {
+        position: static;
+        padding: 0;
+        max-width: 100%;
+        text-align: left;
+      }
+      .hero-content-top {
+        position: absolute;
+        top: 100px;
+        left: 0;
+        width: 78%;
+        padding: 0 18px;
+        z-index: 3;
+        text-align: left;
+      }
+      .hero-content-bottom {
+        position: relative;
+        z-index: 4;
+        padding: 0 16px 32px;
+        text-align: center;
+      }
+      .hero-content-bottom .hero-limited {
+        margin-top: -32px;
+        position: relative;
+        z-index: 5;
+      }
+      .hero-content-bottom .cta-pills,
+      .hero-content-bottom .cta-buttons,
+      .hero-content-bottom .hero-tags {
+        justify-content: center;
+      }
+      .hero-title {
+        font-size: 2.15rem;
+        line-height: 1.5;
+        margin-bottom: 14px;
+      }
+      .hero-sub {
+        font-size: 1rem;
+        line-height: 1.85;
+        margin-bottom: 0;
+      }
+      .hero-limited { font-size: 0.95rem; padding: 12px 22px; }
+      .hero-specialty {
+        font-size: 0.9rem;
+        padding: 8px 20px;
+        margin-bottom: 14px;
+        box-shadow: 0 2px 10px rgba(13,115,119,0.35), 0 0 14px rgba(255,255,255,0.7);
+      }
       .section { padding: 56px 0; }
       .section-title { font-size: 1.1rem; }
       .cases-grid { grid-template-columns: 1fr; }
@@ -795,6 +881,573 @@
       transition: opacity 0.6s ease, transform 0.6s ease;
     }
     .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+
+    /* ===== LINE ICON ===== */
+    .line-icon {
+      width: 22px;
+      height: 22px;
+      flex-shrink: 0;
+      display: inline-block;
+      border-radius: 5px;
+      vertical-align: middle;
+    }
+    .header-cta .line-icon { width: 18px; height: 18px; border-radius: 4px; }
+    .btn-primary .line-icon { width: 22px; height: 22px; }
+
+    /* ===== PILL CTA BUTTONS (CSSで実装) ===== */
+    .cta-pills {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .cta-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 18px 12px 12px;
+      border-radius: 60px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      transition: transform 0.3s, box-shadow 0.3s;
+      white-space: nowrap;
+      cursor: pointer;
+      border: none;
+    }
+    .cta-pill:hover { transform: translateY(-2px); }
+    .cta-pill-line {
+      background: linear-gradient(180deg, #2ec03a 0%, #1a8d2a 100%);
+      color: #fff;
+      box-shadow: 0 6px 18px rgba(28,141,40,0.35), inset 0 1px 0 rgba(255,255,255,0.25), inset 0 -2px 0 rgba(0,0,0,0.08);
+      font-size: 1.05rem;
+      border: 2px solid #1a6e22;
+    }
+    .cta-pill-line:hover {
+      box-shadow: 0 10px 24px rgba(28,141,40,0.45), inset 0 1px 0 rgba(255,255,255,0.25);
+    }
+    .cta-pill-mail {
+      background: linear-gradient(180deg, #2c8a3a 0%, #18601e 100%);
+      color: #fff;
+      box-shadow: 0 6px 18px rgba(28,93,34,0.35), inset 0 1px 0 rgba(255,255,255,0.2), inset 0 -2px 0 rgba(0,0,0,0.1);
+      font-size: 0.95rem;
+      border: 2px solid #134d18;
+    }
+    .cta-pill-mail:hover {
+      box-shadow: 0 10px 24px rgba(28,93,34,0.45), inset 0 1px 0 rgba(255,255,255,0.2);
+    }
+    .cta-pill-icon {
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      overflow: hidden;
+      flex-shrink: 0;
+      display: block;
+    }
+    .cta-pill-icon img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+    .cta-pill-icon-mail {
+      width: 32px; height: 32px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .cta-pill-arrow {
+      width: 26px; height: 26px;
+      background: #fff;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .cta-pill-text { line-height: 1.2; }
+    @media (max-width: 768px) {
+      .cta-pills { gap: 12px; }
+      .cta-pill { padding: 10px 14px 10px 10px; gap: 10px; }
+      .cta-pill-line { font-size: 0.95rem; }
+      .cta-pill-mail { font-size: 0.82rem; }
+      .cta-pill-icon { width: 32px; height: 32px; }
+      .cta-pill-icon-mail { width: 28px; height: 28px; }
+      .cta-pill-icon-mail svg { width: 18px; height: 18px; }
+      .cta-pill-arrow { width: 22px; height: 22px; }
+      .cta-pill-arrow svg { width: 12px; height: 12px; }
+    }
+
+    /* ===== IMAGE CTA BUTTONS ===== */
+    .cta-buttons-img {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .cta-btn-img {
+      display: block;
+      flex: 1 1 0;
+      min-width: 280px;
+      max-width: 420px;
+      transition: transform 0.3s, filter 0.3s;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .cta-btn-img:hover {
+      transform: translateY(-3px);
+      filter: drop-shadow(0 10px 28px rgba(0,0,0,0.18));
+    }
+    .cta-btn-img img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    /* ファイナルCTAでは中央寄せ */
+    .final-cta .cta-buttons-img { justify-content: center; }
+    /* ヒーロー内ではコンパクトに */
+    .cta-buttons-hero .cta-btn-img {
+      min-width: 220px;
+      max-width: 280px;
+    }
+    @media (max-width: 768px) {
+      .cta-buttons-img { gap: 14px; }
+      .cta-btn-img { min-width: 0; max-width: 100%; flex: 1 1 100%; }
+      .cta-buttons-hero .cta-btn-img { max-width: 320px; }
+    }
+
+    /* ===== FINAL CTA BANNER (画像バナー版) ===== */
+    .final-cta-banner {
+      padding: 96px 0;
+      background: #f5fafa;
+    }
+    .final-cta-banner .container {
+      max-width: 960px;
+    }
+    .cta-banner-link {
+      display: block;
+      max-width: 880px;
+      margin: 0 auto 32px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.10);
+      transition: transform 0.4s, box-shadow 0.4s;
+    }
+    .cta-banner-link:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 52px rgba(0,0,0,0.18);
+    }
+    .cta-banner-link img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .cta-mail-link {
+      display: block;
+      max-width: 720px;
+      margin: 0 auto;
+      border-radius: 14px;
+      overflow: hidden;
+      transition: transform 0.3s, filter 0.3s;
+    }
+    .cta-mail-link:hover {
+      transform: translateY(-2px);
+      filter: drop-shadow(0 10px 24px rgba(0,0,0,0.15));
+    }
+    .cta-mail-link img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    @media (max-width: 768px) {
+      .final-cta-banner { padding: 56px 0; }
+      .cta-banner-link { margin-bottom: 20px; border-radius: 14px; }
+      .cta-mail-link { border-radius: 10px; }
+    }
+
+    /* ===== SECTION HEADING (大型・背景英字・ダイヤ装飾) ===== */
+    .sec-head {
+      text-align: center;
+      margin-bottom: 64px;
+      position: relative;
+    }
+    .sec-head-bg {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -55%);
+      font-family: var(--font-en);
+      font-size: clamp(2.5rem, 6vw, 6rem);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      color: #0d7377;
+      opacity: 0.06;
+      pointer-events: none;
+      z-index: 0;
+      line-height: 1;
+      max-width: 100%;
+      overflow: hidden;
+    }
+    .sec-head-en {
+      font-family: var(--font-en);
+      font-size: 1rem;
+      color: var(--gold);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 12px;
+      position: relative;
+      z-index: 1;
+    }
+    .sec-head-jp {
+      font-family: var(--font-serif);
+      font-size: 2.4rem;
+      font-weight: 600;
+      color: #1a2e2e;
+      letter-spacing: 0.12em;
+      display: inline-block;
+      position: relative;
+      z-index: 1;
+      line-height: 1.5;
+    }
+    .sec-head-ornament {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 20px;
+      position: relative;
+      z-index: 1;
+    }
+    .sec-head-ornament::before,
+    .sec-head-ornament::after {
+      content: '';
+      width: 40px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold));
+    }
+    .sec-head-ornament::after {
+      background: linear-gradient(90deg, var(--gold), transparent);
+    }
+    .sec-head-ornament span {
+      width: 7px;
+      height: 7px;
+      background: var(--gold);
+      transform: rotate(45deg);
+      flex-shrink: 0;
+    }
+    .sec-head-desc {
+      text-align: center;
+      font-family: var(--font-sans);
+      font-size: 1rem;
+      color: #555;
+      line-height: 1.9;
+      max-width: 640px;
+      margin: 24px auto 0;
+      font-weight: 400;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ===== TEXTURE BACKGROUND ===== */
+    .sec-texture {
+      position: relative;
+      background: url('blog_bg_sp.jpg') repeat;
+      background-size: 400px auto;
+    }
+    .sec-texture::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background: rgba(255,255,255,0.55);
+    }
+    .sec-texture > .container {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ===== HERO SWIPER ===== */
+    .hero-swiper {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+    .hero-swiper .swiper-slide {
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-swiper .swiper-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      animation: kenburns 10s ease-out forwards;
+    }
+    @keyframes kenburns {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.12); }
+    }
+    .hero-swiper .swiper-pagination {
+      bottom: 24px !important;
+      left: 50% !important;
+      transform: translateX(-50%);
+      width: auto !important;
+      z-index: 4;
+    }
+    .hero-swiper .swiper-pagination-bullet {
+      width: 36px;
+      height: 3px;
+      border-radius: 2px;
+      background: rgba(13,115,119,0.3);
+      opacity: 1;
+      transition: all 0.5s;
+      margin: 0 5px !important;
+    }
+    .hero-swiper .swiper-pagination-bullet-active {
+      background: #0d7377;
+      width: 52px;
+      box-shadow: 0 0 12px rgba(13,115,119,0.3);
+    }
+
+    /* ===== TEXT MARQUEE (Clinic Web Lab) ===== */
+    .text-marquee {
+      overflow: hidden;
+      white-space: nowrap;
+      padding: 56px 0;
+      background: #fff;
+      position: relative;
+    }
+    .text-marquee-inner {
+      display: inline-flex;
+      animation: marquee 40s linear infinite;
+    }
+    .text-marquee-inner span {
+      font-family: var(--font-en);
+      font-size: 6.5rem;
+      font-weight: 400;
+      color: #0d7377;
+      opacity: 0.08;
+      letter-spacing: 0.06em;
+      padding-right: 80px;
+      user-select: none;
+    }
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ===== IMAGE MARQUEE (左から右に流れる) ===== */
+    .image-marquee {
+      overflow: hidden;
+      padding: 56px 0;
+      background: #f5fafa;
+    }
+    .image-marquee-track {
+      display: flex;
+      gap: 24px;
+      width: max-content;
+      animation: marquee-images 50s linear infinite;
+    }
+    .image-marquee-item {
+      width: 320px;
+      height: 220px;
+      flex-shrink: 0;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    }
+    .image-marquee-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s;
+    }
+    .image-marquee-item:hover img {
+      transform: scale(1.05);
+    }
+    @keyframes marquee-images {
+      0% { transform: translateX(-50%); }
+      100% { transform: translateX(0); }
+    }
+
+    /* ===== HANGING BOARD (診療科目セクションの再現) ===== */
+    .board-wrap {
+      position: relative;
+      max-width: 1460px;
+      margin: 0 auto;
+      padding-top: 50px;
+    }
+    .board-wrap::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 16px; height: 16px;
+      background: radial-gradient(circle at 40% 35%, #2a9c9f, #0d7377);
+      border-radius: 50%;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2), inset 0 1px 2px rgba(255,255,255,0.3);
+      z-index: 3;
+    }
+    .board-wrap::after {
+      content: '';
+      position: absolute;
+      top: 8px; left: 50%;
+      transform: translateX(-50%);
+      width: 160px; height: 44px;
+      background:
+        linear-gradient(to bottom right, transparent 48.5%, #5a6a5a 49%, #5a6a5a 50.5%, transparent 51%),
+        linear-gradient(to bottom left, transparent 48.5%, #5a6a5a 49%, #5a6a5a 50.5%, transparent 51%);
+      background-size: 50% 100%, 50% 100%;
+      background-position: left, right;
+      background-repeat: no-repeat;
+      opacity: 0.25;
+      z-index: 2;
+    }
+    .board-panel {
+      position: relative;
+      z-index: 1;
+      background: #faf6f0;
+      border-radius: 6px;
+      box-shadow: 0 4px 24px rgba(13,115,119,0.08), 0 1px 3px rgba(0,0,0,0.04);
+      padding: 64px 64px 60px;
+      border-top: 3px solid #0d7377;
+      border-bottom: 3px solid #0d7377;
+    }
+    .board-title {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+    .board-title h3 {
+      font-family: var(--font-serif);
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: #1a2e2e;
+      letter-spacing: 0.08em;
+      padding-bottom: 16px;
+      border-bottom: 2px solid #0d7377;
+      display: inline-block;
+    }
+    /* ボード内に入れた sec-head の調整 */
+    .sec-head.sec-head-in-board {
+      margin-bottom: 40px;
+      overflow: hidden;
+    }
+    .sec-head.sec-head-in-board .sec-head-bg {
+      font-size: clamp(2rem, 5vw, 4.5rem);
+    }
+    .sec-head.sec-head-in-board .sec-head-jp {
+      font-size: 2rem;
+    }
+    .sec-head.sec-head-in-board .sec-head-desc {
+      margin-top: 20px;
+      font-size: 0.92rem;
+    }
+    .dept-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      position: relative;
+      z-index: 2;
+    }
+    .dept-card {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      filter: drop-shadow(0 4px 20px rgba(13,115,119,0.10));
+      transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
+      cursor: pointer;
+    }
+    .dept-card:hover {
+      transform: translateY(-6px);
+      filter: drop-shadow(0 10px 32px rgba(13,115,119,0.16));
+    }
+    .dept-img {
+      border-radius: 8px 8px 0 0;
+      overflow: hidden;
+      height: 360px;
+      position: relative;
+    }
+    .dept-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.4,0,0.2,1);
+    }
+    .dept-card:hover .dept-img img {
+      transform: scale(1.06);
+    }
+    .dept-body {
+      background: #fff;
+      padding: 44px 36px 48px;
+      text-align: center;
+      border-radius: 0 0 4px 4px;
+    }
+    .dept-body h4 {
+      font-family: var(--font-serif);
+      font-size: 1.65rem;
+      font-weight: 600;
+      color: #1a2e2e;
+      letter-spacing: 0.06em;
+      margin-bottom: 8px;
+    }
+    .dept-body .dept-en {
+      font-family: var(--font-en);
+      font-size: 0.85rem;
+      color: var(--gold);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 22px;
+    }
+    .dept-body .dept-desc {
+      font-family: var(--font-sans);
+      font-size: 1.02rem;
+      color: #555;
+      line-height: 1.95;
+      font-weight: 400;
+      text-align: left;
+      margin-bottom: 22px;
+    }
+    .dept-result {
+      display: inline-block;
+      background: #e8f4f3;
+      color: #0d7377;
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 7px 20px;
+      border-radius: 8px;
+      letter-spacing: 0.04em;
+    }
+
+    /* ===== RESPONSIVE for new components ===== */
+    @media (max-width: 1024px) {
+      .sec-head-bg { font-size: clamp(2rem, 8vw, 4.5rem); }
+      .sec-head-jp { font-size: 1.9rem; }
+      .text-marquee-inner span { font-size: 4.5rem; }
+      .image-marquee-item { width: 260px; height: 180px; }
+    }
+    @media (max-width: 768px) {
+      .sec-head { margin-bottom: 40px; }
+      .sec-head-bg { font-size: clamp(1.8rem, 10vw, 3.2rem); }
+      .sec-head-en { font-size: 0.85rem; }
+      .sec-head-jp { font-size: 1.5rem; letter-spacing: 0.08em; }
+      .sec-head-desc { font-size: 0.9rem; }
+      .text-marquee { padding: 32px 0; }
+      .text-marquee-inner span { font-size: 2.8rem; padding-right: 40px; }
+      .image-marquee { padding: 32px 0; }
+      .image-marquee-item { width: 200px; height: 140px; }
+      .board-wrap { padding-top: 40px; }
+      .board-panel { padding: 32px 16px 28px; }
+      .board-title h3 { font-size: 1.25rem; }
+      .dept-grid { grid-template-columns: 1fr; gap: 20px; }
+      .dept-img { height: 200px; }
+      .dept-body { padding: 22px 18px 26px; }
+      .dept-body h4 { font-size: 1.1rem; }
+    }
   </style>
 </head>
 <body>
@@ -819,37 +1472,55 @@
         <a href="#flow">制作のながれ</a>
         <a href="#faq">FAQ</a>
       </nav>
-      <a href="#contact" class="header-cta">無料相談する</a>
+      <a href="#contact" class="header-cta"><img src="line-icon.webp" alt="" class="line-icon">LINEで相談する</a>
     </div>
   </header>
 
   <!-- HERO -->
   <section class="hero" id="hero">
     <div class="hero-bg">
-      <img src="hero.jpg" alt="日本人医師">
+      <div class="swiper hero-swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide"><img src="fv-consult.png" alt="クリニック相談シーン"></div>
+          <div class="swiper-slide"><img src="hero.jpg" alt="日本人医師"></div>
+          <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1920&q=80" alt="医療従事者"></div>
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
     </div>
     <div class="hero-overlay"></div>
     <div class="hero-mobile-img">
-      <img src="hero.jpg" alt="日本人医師">
+      <img src="fv-consult.png" alt="クリニック相談シーン">
     </div>
     <div class="container">
       <div class="hero-content">
-        <div class="hero-specialty">医科・歯科・動物病院 限定</div>
-        <h1 class="hero-title">
-          <em>HP制作費、<br>高すぎませんか？</em>
-        </h1>
-        <p class="hero-sub">制作・運用・集患まで、月4,980円〜<br>すべてお任せください。</p>
+        <div class="hero-content-top">
+          <div class="hero-specialty">医科・歯科・動物病院 限定</div>
+          <h1 class="hero-title">
+            <em>HP制作費、<br>高すぎませんか？</em>
+          </h1>
+          <p class="hero-sub">制作・運用・集患まで、月4,980円〜<br>すべてお任せください。</p>
+        </div>
+        <div class="hero-content-bottom">
         <div class="hero-limited">
           &#x1F525; 今なら限定5クリニック様まで
         </div>
-        <div class="cta-buttons">
-          <a href="#contact" class="btn-primary">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-            LINEで相談する
+        <div class="cta-pills">
+          <a href="#contact" class="cta-pill cta-pill-line">
+            <span class="cta-pill-icon"><img src="line-icon.webp" alt=""></span>
+            <span class="cta-pill-text">LINEで相談する</span>
+            <span class="cta-pill-arrow">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1a6e22" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </span>
           </a>
-          <a href="#contact" class="btn-secondary">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-            メールで問い合わせ
+          <a href="#contact" class="cta-pill cta-pill-mail">
+            <span class="cta-pill-icon-mail">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            </span>
+            <span class="cta-pill-text">メールでお問い合わせはこちら</span>
+            <span class="cta-pill-arrow">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#134d18" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </span>
           </a>
         </div>
         <div class="hero-tags">
@@ -857,62 +1528,84 @@
           <span class="hero-tag">初期費用0円〜</span>
           <span class="hero-tag">集患サポート付き</span>
         </div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- テンプレート紹介（旧：導入実績・事例） -->
   <section class="section" id="templates">
-    <div class="container">
-      <div class="text-center fade-in">
-        <span class="section-label">テンプレート紹介</span>
-        <h2 class="section-title">クリニック向けサイトの一例として、<br>以下のような構成をご紹介します</h2>
-      </div>
-      <div class="cases-grid fade-in">
-        <a href="https://clinicdemo1.drip-inc.jp/" target="_blank" class="case-card" style="text-decoration:none;color:inherit;display:block;cursor:pointer;">
-          <div class="case-image">
-            <img src="https://clinicdemo1.drip-inc.jp/wp-content/themes/midori-clinic/assets/images/exterior/hero-firstview.png" alt="みどり内科クリニック">
+    <div class="container container-wide">
+      <div class="board-wrap fade-in">
+        <div class="board-panel">
+          <div class="sec-head sec-head-in-board">
+            <span class="sec-head-bg">TEMPLATES</span>
+            <span class="sec-head-en">Templates</span>
+            <h2 class="sec-head-jp">テンプレート紹介</h2>
+            <div class="sec-head-ornament"><span></span></div>
+            <p class="sec-head-desc">クリニック向けサイトの一例として、<br>以下のような構成をご紹介します</p>
           </div>
-          <div class="case-body">
-            <h4>みどり内科クリニック 様</h4>
-            <p>内科・消化器内科・循環器内科・呼吸器内科の総合内科クリニック。開業に合わせたHP制作で、地域からの新患獲得に貢献。</p>
-            <span class="case-result">月間アクセス数3,000+</span>
-          </div>
-        </a>
-        <div class="case-card">
-          <div class="case-image">
-            <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=600&q=80" alt="歯科クリニック">
-          </div>
-          <div class="case-body">
-            <h4>B歯科クリニック 様</h4>
-            <p>既存HPのリニューアルとMEO対策を実施。Googleマップ経由の来院数が大幅に増加。</p>
-            <span class="case-result">Google経由の来院 2.5倍</span>
-          </div>
-        </div>
-        <div class="case-card">
-          <div class="case-image">
-            <img src="https://images.unsplash.com/photo-1548767797-d8c844163c4c?auto=format&fit=crop&w=600&q=80" alt="動物病院">
-          </div>
-          <div class="case-body">
-            <h4>C動物病院 様</h4>
-            <p>口コミ戦略の導入でGoogle評価が向上。地域での認知度アップに貢献。</p>
-            <span class="case-result">口コミ評価 3.2→4.6</span>
+          <div class="dept-grid">
+            <a href="https://clinicdemo1.drip-inc.jp/" target="_blank" class="dept-card">
+              <div class="dept-img">
+                <img src="tpl-midori.png" alt="みどり内科・消化器内科クリニック">
+              </div>
+              <div class="dept-body">
+                <h4>みどり内科・消化器内科クリニック 様</h4>
+                <span class="dept-en">Internal Medicine</span>
+                <p class="dept-desc">内科・消化器内科・循環器内科・呼吸器内科の総合内科クリニック。開業に合わせたHP制作で、地域からの新患獲得に貢献。</p>
+                <span class="dept-result">月間アクセス数3,000+</span>
+              </div>
+            </a>
+            <div class="dept-card">
+              <div class="dept-img">
+                <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=600&q=80" alt="歯科クリニック">
+              </div>
+              <div class="dept-body">
+                <h4>B歯科クリニック 様</h4>
+                <span class="dept-en">Dental Clinic</span>
+                <p class="dept-desc">既存HPのリニューアルとMEO対策を実施。Googleマップ経由の来院数が大幅に増加。</p>
+                <span class="dept-result">Google経由の来院 2.5倍</span>
+              </div>
+            </div>
+            <div class="dept-card">
+              <div class="dept-img">
+                <img src="https://images.unsplash.com/photo-1548767797-d8c844163c4c?auto=format&fit=crop&w=600&q=80" alt="動物病院">
+              </div>
+              <div class="dept-body">
+                <h4>C動物病院 様</h4>
+                <span class="dept-en">Veterinary Clinic</span>
+                <p class="dept-desc">口コミ戦略の導入でGoogle評価が向上。地域での認知度アップに貢献。</p>
+                <span class="dept-result">口コミ評価 3.2→4.6</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- TEXT MARQUEE -->
+  <div class="text-marquee" aria-hidden="true">
+    <div class="text-marquee-inner">
+      <span>Clinic Web Lab&nbsp;&nbsp;&middot;&nbsp;&nbsp;Clinic Web Lab&nbsp;&nbsp;&middot;&nbsp;&nbsp;Clinic Web Lab&nbsp;&nbsp;&middot;&nbsp;&nbsp;Clinic Web Lab&nbsp;&nbsp;&middot;&nbsp;&nbsp;</span>
+      <span>Clinic Web Lab&nbsp;&nbsp;&middot;&nbsp;&nbsp;Clinic Web Lab&nbsp;&nbsp;&middot;&nbsp;&nbsp;Clinic Web Lab&nbsp;&nbsp;&middot;&nbsp;&nbsp;Clinic Web Lab&nbsp;&nbsp;&middot;&nbsp;&nbsp;</span>
+    </div>
+  </div>
+
   <!-- こんなお悩みありませんか？ -->
-  <section class="section bg-light" id="problems">
+  <section class="section sec-texture" id="problems">
     <div class="container">
-      <div class="text-center fade-in">
-        <span class="section-label">こんなお悩みありませんか？</span>
-        <h2 class="section-title">HP制作の費用が高すぎる…<br>そんな先生へ</h2>
+      <div class="sec-head fade-in">
+        <span class="sec-head-bg">PROBLEMS</span>
+        <span class="sec-head-en">Problems</span>
+        <h2 class="sec-head-jp">こんなお悩み<br>ありませんか？</h2>
+        <div class="sec-head-ornament"><span></span></div>
+        <p class="sec-head-desc">HP制作の費用が高すぎる…<br>そんな先生へ</p>
       </div>
       <div class="problems-layout fade-in">
         <div class="problems-image">
-          <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=800&q=80" alt="悩む医師のイメージ">
+          <img src="problem.png" alt="悩む医師のイメージ">
         </div>
         <div class="problems-grid">
           <div class="problem-card">
@@ -923,13 +1616,13 @@
           </div>
           <div class="problem-card">
             <div class="problem-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#d32f2f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="#d32f2f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
             </div>
             <p class="problem-text">開業資金がかさんで<strong>HPにまで予算を割けない</strong></p>
           </div>
           <div class="problem-card">
             <div class="problem-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#d32f2f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="#d32f2f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
             </div>
             <p class="problem-text">月々の維持費・更新費も<strong>どれだけかかるか不安</strong></p>
           </div>
@@ -941,8 +1634,11 @@
   <!-- 解決策の提示 -->
   <section class="section" id="solution">
     <div class="container">
-      <div class="text-center fade-in">
-        <span class="section-label">解決策の提示</span>
+      <div class="sec-head fade-in">
+        <span class="sec-head-bg">SOLUTION</span>
+        <span class="sec-head-en">Solution</span>
+        <h2 class="sec-head-jp">解決策のご提案</h2>
+        <div class="sec-head-ornament"><span></span></div>
       </div>
       <div class="solution-message fade-in">
         <h3>初期費用0円、月額4,980円〜。<br>必要なもの全部コミコミです</h3>
@@ -951,7 +1647,7 @@
       <div class="solution-services fade-in">
         <div class="service-card">
           <div class="service-card-img">
-            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80" alt="HP制作イメージ">
+            <img src="solution-hp.png" alt="HP制作イメージ">
           </div>
           <div class="service-card-body">
             <h4>HP制作</h4>
@@ -960,7 +1656,7 @@
         </div>
         <div class="service-card">
           <div class="service-card-img">
-            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80" alt="CMS運用サポートイメージ">
+            <img src="solution-cms.png" alt="CMS運用サポートイメージ">
           </div>
           <div class="service-card-body">
             <h4>CMS運用サポート</h4>
@@ -969,7 +1665,7 @@
         </div>
         <div class="service-card">
           <div class="service-card-img">
-            <img src="https://images.unsplash.com/photo-1533750349088-cd871a92f312?auto=format&fit=crop&w=600&q=80" alt="集患支援イメージ">
+            <img src="solution-marketing.png" alt="集患支援イメージ">
           </div>
           <div class="service-card-body">
             <h4>集患支援</h4>
@@ -981,11 +1677,14 @@
   </section>
 
   <!-- 料金プラン -->
-  <section class="section bg-light" id="pricing">
+  <section class="section sec-texture" id="pricing">
     <div class="container">
-      <div class="text-center fade-in">
-        <span class="section-label">料金プラン</span>
-        <h2 class="section-title">シンプルで分かりやすい料金体系</h2>
+      <div class="sec-head fade-in">
+        <span class="sec-head-bg">PRICING</span>
+        <span class="sec-head-en">Pricing</span>
+        <h2 class="sec-head-jp">料金プラン</h2>
+        <div class="sec-head-ornament"><span></span></div>
+        <p class="sec-head-desc">シンプルで分かりやすい料金体系</p>
       </div>
 
       <!-- 新規クリニック向け -->
@@ -1284,38 +1983,31 @@
     </div>
   </section>
 
-  <!-- MID CTA -->
-  <section class="final-cta" style="padding: 56px 0;">
-    <div class="final-cta-bg">
-      <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1920&q=80" alt="クリニック内観">
-      <div class="final-cta-bg-overlay"></div>
-    </div>
-    <div class="container fade-in" style="position:relative;z-index:2;">
-      <h2 style="font-size:1.4rem;">まずはお気軽にご相談ください</h2>
-      <p>プラン選びに迷っても大丈夫。最適なプランを一緒に考えます。</p>
-      <div class="cta-buttons" style="justify-content:center;">
-        <a href="#contact" class="btn-primary" style="background:#fff;color:#0d7377;">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-          LINEで相談する
-        </a>
-        <a href="#contact" class="btn-secondary" style="color:#fff;border-color:#fff;">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-          メールで問い合わせ
-        </a>
-      </div>
+  <!-- MID CTA (画像バナー版) -->
+  <section class="final-cta-banner">
+    <div class="container fade-in">
+      <a href="#contact" class="cta-banner-link">
+        <img src="cta-line.png" alt="まずは無料相談から - LINEで相談する">
+      </a>
+      <a href="#contact" class="cta-mail-link">
+        <img src="cta-mail-button.png" alt="メールでお問い合わせはこちら">
+      </a>
     </div>
   </section>
 
   <!-- 選ばれる理由 -->
   <section class="section" id="usp">
     <div class="container">
-      <div class="text-center fade-in">
-        <span class="section-label">選ばれる理由</span>
-        <h2 class="section-title">医療専門だからこそ、<br>選ばれ続けています</h2>
+      <div class="sec-head fade-in">
+        <span class="sec-head-bg">FEATURES</span>
+        <span class="sec-head-en">Why us</span>
+        <h2 class="sec-head-jp">選ばれる理由</h2>
+        <div class="sec-head-ornament"><span></span></div>
+        <p class="sec-head-desc">医療専門だからこそ、選ばれ続けています</p>
       </div>
       <div class="usp-layout fade-in">
         <div class="usp-image">
-          <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=800&q=80" alt="清潔感のあるクリニック内観">
+          <img src="usp-reason.png" alt="クリニックWEB制作ラボの選ばれる理由">
         </div>
         <div class="usp-list">
           <div class="usp-card">
@@ -1351,12 +2043,38 @@
     </div>
   </section>
 
+  <!-- IMAGE MARQUEE -->
+  <div class="image-marquee" aria-hidden="true">
+    <div class="image-marquee-track">
+      <div class="image-marquee-item"><img src="fv-consult.png" alt=""></div>
+      <div class="image-marquee-item"><img src="hero.jpg" alt=""></div>
+      <div class="image-marquee-item"><img src="tpl-midori.png" alt=""></div>
+      <div class="image-marquee-item"><img src="problem.png" alt=""></div>
+      <div class="image-marquee-item"><img src="solution-hp.png" alt=""></div>
+      <div class="image-marquee-item"><img src="solution-cms.png" alt=""></div>
+      <div class="image-marquee-item"><img src="solution-marketing.png" alt=""></div>
+      <div class="image-marquee-item"><img src="usp-reason.png" alt=""></div>
+      <!-- ループ用に複製 -->
+      <div class="image-marquee-item"><img src="fv-consult.png" alt=""></div>
+      <div class="image-marquee-item"><img src="hero.jpg" alt=""></div>
+      <div class="image-marquee-item"><img src="tpl-midori.png" alt=""></div>
+      <div class="image-marquee-item"><img src="problem.png" alt=""></div>
+      <div class="image-marquee-item"><img src="solution-hp.png" alt=""></div>
+      <div class="image-marquee-item"><img src="solution-cms.png" alt=""></div>
+      <div class="image-marquee-item"><img src="solution-marketing.png" alt=""></div>
+      <div class="image-marquee-item"><img src="usp-reason.png" alt=""></div>
+    </div>
+  </div>
+
   <!-- 制作のながれ -->
-  <section class="section bg-light" id="flow">
+  <section class="section sec-texture" id="flow">
     <div class="container">
-      <div class="text-center fade-in">
-        <span class="section-label">制作のながれ</span>
-        <h2 class="section-title">お問い合わせから公開まで、<br>スムーズにサポートします</h2>
+      <div class="sec-head fade-in">
+        <span class="sec-head-bg">FLOW</span>
+        <span class="sec-head-en">Flow</span>
+        <h2 class="sec-head-jp">制作のながれ</h2>
+        <div class="sec-head-ornament"><span></span></div>
+        <p class="sec-head-desc">お問い合わせから公開まで、<br>スムーズにサポートします</p>
       </div>
       <div class="flow-steps fade-in">
         <div class="flow-step">
@@ -1420,9 +2138,11 @@
   <!-- よくある質問 -->
   <section class="section" id="faq">
     <div class="container">
-      <div class="text-center fade-in">
-        <span class="section-label">よくある質問</span>
-        <h2 class="section-title">FAQ</h2>
+      <div class="sec-head fade-in">
+        <span class="sec-head-bg">FAQ</span>
+        <span class="sec-head-en">FAQ</span>
+        <h2 class="sec-head-jp">よくある質問</h2>
+        <div class="sec-head-ornament"><span></span></div>
       </div>
       <div class="faq-list fade-in">
         <div class="faq-item">
@@ -1477,29 +2197,15 @@
     </div>
   </section>
 
-  <!-- FINAL CTA -->
-  <section class="final-cta" id="contact">
-    <div class="final-cta-bg">
-      <img src="https://images.unsplash.com/photo-1504439468489-c8920d796a29?auto=format&fit=crop&w=1920&q=80" alt="クリニック背景">
-      <div class="final-cta-bg-overlay"></div>
-    </div>
+  <!-- FINAL CTA (画像バナー版) -->
+  <section class="final-cta-banner" id="contact">
     <div class="container fade-in">
-      <h2>まずは無料相談から</h2>
-      <p>お気軽にご相談ください。<br>開業準備の忙しい先生に代わって、最適なHPプランをご提案します。</p>
-      <div class="hero-limited">
-        &#x1F525; 今なら限定5クリニック様まで
-      </div>
-      <div class="cta-buttons">
-        <a href="#" class="btn-primary">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-          LINEで相談する
-        </a>
-        <a href="#" class="btn-secondary">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-          メールで問い合わせ
-        </a>
-      </div>
-      <p class="final-cta-note">※ 無料相談は30分程度です。無理な営業は一切いたしません。</p>
+      <a href="#" class="cta-banner-link">
+        <img src="cta-line.png" alt="まずは無料相談から - LINEで相談する">
+      </a>
+      <a href="#" class="cta-mail-link">
+        <img src="cta-mail-button.png" alt="メールでお問い合わせはこちら">
+      </a>
     </div>
   </section>
 
@@ -1530,6 +2236,7 @@
     </div>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const observer = new IntersectionObserver((entries) => {
@@ -1538,6 +2245,17 @@
         });
       }, { threshold: 0.1 });
       document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+      if (typeof Swiper !== 'undefined') {
+        new Swiper('.hero-swiper', {
+          loop: true,
+          speed: 1500,
+          effect: 'fade',
+          fadeEffect: { crossFade: true },
+          autoplay: { delay: 5000, disableOnInteraction: false },
+          pagination: { el: '.hero-swiper .swiper-pagination', clickable: true }
+        });
+      }
     });
   </script>
 
